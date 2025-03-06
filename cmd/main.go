@@ -5,6 +5,7 @@ import (
 	"go-commerce-api/infrastructure/config"
 	"go-commerce-api/infrastructure/database"
 	"go-commerce-api/pkg/middleware"
+	ur "go-commerce-api/internal/user/router"
 
 	"net/http"
 	"os"
@@ -20,6 +21,8 @@ import (
 )
 
 func SetupRoutes(e *echo.Echo, db *gorm.DB) {
+	user := e.Group("/users")
+	ur.UserRouter(user, db)
 
 }
 

@@ -3,14 +3,16 @@ package database
 import (
 	"log"
 
-	"gorm.io/gorm"
+	eu "go-commerce-api/internal/user/entity"
 
+	"gorm.io/gorm"
 )
 
 func Migration(db *gorm.DB) {
 	migrator := db.Migrator()
 
 	db.AutoMigrate(
+		&eu.User{},
 	)
 
 	tables := []string{"users", "products", "payments"}
