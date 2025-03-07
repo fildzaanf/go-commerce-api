@@ -1,0 +1,1346 @@
+{
+	"info": {
+		"_postman_id": "bc8ee46c-ff4e-4f13-8831-764a10634942",
+		"name": "Go Commerce API Documentation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32514382"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Fildzaa\",\n  \"email\": \"hanisahfildza@gmail.com\",\n  \"role\": \"buyer\",\n  \"password\": \"password123\",\n  \"confirm_password\": \"password123\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/users/register",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register 201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"role\": \"seller\",\n  \"password\": \"password123\",\n  \"confirm_password\": \"password123\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/users/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 05:45:05 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "162"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"register successfully\"\n    },\n    \"results\": {\n        \"id\": \"062aa7bd-906a-47ba-8569-e054d96b3567\",\n        \"role\": \"seller\",\n        \"email\": \"johndoe@example.com\"\n    }\n}"
+						},
+						{
+							"name": "Register 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"role\": \"seller\",\n  \"password\": \"password123\",\n  \"confirm_password\": \"password123\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/users/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 05:46:37 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"email already exists\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/users/login",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"johndoe@example.com\",\n  \"password\": \"password123\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/users/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 05:47:53 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "353"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"logged in successfully\"\n    },\n    \"results\": {\n        \"id\": \"062aa7bd-906a-47ba-8569-e054d96b3567\",\n        \"role\": \"seller\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3NDE0MTI4NzMsImlkIjoiMDYyYWE3YmQtOTA2YS00N2JhLTg1NjktZTA1NGQ5NmIzNTY3Iiwicm9sZSI6InNlbGxlciJ9.piv8m8zTCYXPvgt_d_dIsp1qCJrtIyWGZS5JCiVeXj4\"\n    }\n}"
+						},
+						{
+							"name": "Login 401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"johndoe\",\n  \"password\": \"password123\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/users/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 05:48:28 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"invalid email format. example: emailname@example.com\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/users/:id",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Admin by ID 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/users/:id",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2717039d-fbc7-4917-8265-98154a3cd905"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 07:23:05 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "178"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"data retrieved successfully\"\n    },\n    \"results\": {\n        \"id\": \"2717039d-fbc7-4917-8265-98154a3cd905\",\n        \"name\": \"Anna\",\n        \"email\": \"anna@example.com\",\n        \"role\": \"buyer\"\n    }\n}"
+						},
+						{
+							"name": "Get Admin by ID 403",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/users/:id",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2717039d-fbc7-4917-8265-98154a3cd905x"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 07:23:28 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"forbidden access\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "MacBook Pro 16-inch (M3 Pro)",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "The 16-inch MacBook Pro with the Apple M3 Pro chip delivers outstanding performance for creative professionals and developers. Featuring a stunning Liquid Retina XDR display, up to 22 hours of battery life, and a premium aluminum design, it’s perfect for video editing, programming, and heavy multitasking.",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "1000000",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"type": "file",
+									"src": "/Users/user/Documents/2025/macbook.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/products",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Product 201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "MacBook Pro 16-inch (M3 Pro)",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "The 16-inch MacBook Pro with the Apple M3 Pro chip delivers outstanding performance for creative professionals and developers. Featuring a stunning Liquid Retina XDR display, up to 22 hours of battery life, and a premium aluminum design, it’s perfect for video editing, programming, and heavy multitasking.",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "1000000",
+											"type": "text"
+										},
+										{
+											"key": "stock",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "image_url",
+											"type": "file",
+											"src": "/Users/user/Documents/2025/macbook.jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/products",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 06:31:00 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "752"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"data created successfully\"\n    },\n    \"results\": {\n        \"id\": \"82c8bdc4-961e-4235-8438-0cd9cc4eb7b9\",\n        \"user_id\": \"3beff2c7-765a-4770-90fb-275a35b809f9\",\n        \"name\": \"MacBook Pro 16-inch (M3 Pro)\",\n        \"description\": \"The 16-inch MacBook Pro with the Apple M3 Pro chip delivers outstanding performance for creative professionals and developers. Featuring a stunning Liquid Retina XDR display, up to 22 hours of battery life, and a premium aluminum design, it’s perfect for video editing, programming, and heavy multitasking.\",\n        \"price\": \"1000000\",\n        \"stock\": 10,\n        \"image_url\": \"https://talkspace-pat.s3.amazonaws.com/0519b048-945c-4115-9d81-904f26772a1e.jpeg\",\n        \"created_at\": \"2025-03-07T13:31:00.028674+07:00\",\n        \"updated_at\": \"2025-03-07T13:31:00.028674+07:00\"\n    }\n}"
+						},
+						{
+							"name": "Create Product 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "MacBook Pro 16-inch (M3 Pro)",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "The 16-inch MacBook Pro with the Apple M3 Pro chip delivers outstanding performance for creative professionals and developers. Featuring a stunning Liquid Retina XDR display, up to 22 hours of battery life, and a premium aluminum design, it’s perfect for video editing, programming, and heavy multitasking.",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "stock",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "image_url",
+											"type": "file",
+											"src": "/Users/user/Documents/2025/macbook.jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/products",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 06:32:51 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"price is empty or invalid\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Product 200",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/products/:id",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5bb5d88c-ffb2-470d-a719-9860071a08c0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 07:24:43 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"product successfully deleted\"\n    }\n}"
+						},
+						{
+							"name": "Delete Product 404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/products/:id",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5bb5d88c-ffb2-470d-a719-9860071a08c0"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 07:24:58 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"product not found\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Product by ID 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/products/:id",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "82c8bdc4-961e-4235-8438-0cd9cc4eb7b9"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 06:33:26 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "744"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"data retrieved successfully\"\n    },\n    \"results\": {\n        \"id\": \"82c8bdc4-961e-4235-8438-0cd9cc4eb7b9\",\n        \"user_id\": \"3beff2c7-765a-4770-90fb-275a35b809f9\",\n        \"name\": \"MacBook Pro 16-inch (M3 Pro)\",\n        \"description\": \"The 16-inch MacBook Pro with the Apple M3 Pro chip delivers outstanding performance for creative professionals and developers. Featuring a stunning Liquid Retina XDR display, up to 22 hours of battery life, and a premium aluminum design, it’s perfect for video editing, programming, and heavy multitasking.\",\n        \"price\": \"1000000\",\n        \"stock\": 10,\n        \"image_url\": \"https://talkspace-pat.s3.amazonaws.com/0519b048-945c-4115-9d81-904f26772a1e.jpeg\",\n        \"created_at\": \"2025-03-07T13:31:00.028674Z\",\n        \"updated_at\": \"2025-03-07T13:31:00.028674Z\"\n    }\n}"
+						},
+						{
+							"name": "Get Product by ID 404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/products/:id",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "82c8bdc4-961e-4235-8438-0cd9cc4eb7b9x"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 06:33:49 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"product not found\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Products 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/products",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 06:35:06 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1350"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"data retrieved successfully\"\n    },\n    \"results\": [\n        {\n            \"id\": \"82c8bdc4-961e-4235-8438-0cd9cc4eb7b9\",\n            \"user_id\": \"3beff2c7-765a-4770-90fb-275a35b809f9\",\n            \"name\": \"MacBook Pro 16-inch (M3 Pro)\",\n            \"description\": \"The 16-inch MacBook Pro with the Apple M3 Pro chip delivers outstanding performance for creative professionals and developers. Featuring a stunning Liquid Retina XDR display, up to 22 hours of battery life, and a premium aluminum design, it’s perfect for video editing, programming, and heavy multitasking.\",\n            \"price\": \"1000000\",\n            \"stock\": 10,\n            \"image_url\": \"https://talkspace-pat.s3.amazonaws.com/0519b048-945c-4115-9d81-904f26772a1e.jpeg\",\n            \"created_at\": \"2025-03-07T13:31:00.028674Z\",\n            \"updated_at\": \"2025-03-07T13:31:00.028674Z\"\n        },\n        {\n            \"id\": \"6017d162-54e5-40ad-9b11-203cd9557c14\",\n            \"user_id\": \"3beff2c7-765a-4770-90fb-275a35b809f9\",\n            \"name\": \"iphone 16\",\n            \"description\": \"The iPhone 16 brings a sleek design, a brighter Super Retina XDR OLED display, and the latest A18 Bionic chip for faster and more efficient performance. With an enhanced 48MP AI-powered camera, you can capture stunning photos and videos, even in low-light conditions.\",\n            \"price\": \"1000\",\n            \"stock\": 7,\n            \"image_url\": \"https://talkspace-pat.s3.amazonaws.com/f171f675-c39f-43b7-8ef8-589e742ba540.jpeg\",\n            \"created_at\": \"2025-03-07T13:35:03.709453Z\",\n            \"updated_at\": \"2025-03-07T13:35:03.709453Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Product by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Product by ID 200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "iPhone 16 Pro",
+											"type": "text"
+										},
+										{
+											"key": "stock",
+											"value": "10",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/products/:id",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6017d162-54e5-40ad-9b11-203cd9557c14"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 10:01:04 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "688"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"data updated successfully\"\n    },\n    \"results\": {\n        \"id\": \"6017d162-54e5-40ad-9b11-203cd9557c14\",\n        \"user_id\": \"3beff2c7-765a-4770-90fb-275a35b809f9\",\n        \"name\": \"iPhone 16 Pro\",\n        \"description\": \"The iPhone 16 brings a sleek design, a brighter Super Retina XDR OLED display, and the latest A18 Bionic chip for faster and more efficient performance. With an enhanced 48MP AI-powered camera, you can capture stunning photos and videos, even in low-light conditions.\",\n        \"price\": \"1000\",\n        \"stock\": 10,\n        \"image_url\": \"https://talkspace-pat.s3.amazonaws.com/f171f675-c39f-43b7-8ef8-589e742ba540.jpeg\",\n        \"created_at\": \"2025-03-07T13:35:03.709453Z\",\n        \"updated_at\": \"2025-03-07T17:01:04.975758+07:00\"\n    }\n}"
+						},
+						{
+							"name": "Update Product by ID 404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "iPhone 16 Pro",
+											"type": "text"
+										},
+										{
+											"key": "stock",
+											"value": "10",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/products/:id",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6017d162-54e5-40ad-9b11-203cd9557c14x"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 10:02:11 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"product not found\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Create Payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/payments",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"payments"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Payment 201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"product_id\":\"82c8bdc4-961e-4235-8438-0cd9cc4eb7b9\",\n    \"quantity\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/payments",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"payments"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 10:10:51 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1232"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"payment created successfully\"\n    },\n    \"results\": {\n        \"id\": \"96c7fe77-0b54-438c-9e4d-71d58d56463a\",\n        \"product_id\": \"82c8bdc4-961e-4235-8438-0cd9cc4eb7b9\",\n        \"user_id\": \"4080df7f-ac70-497b-a476-a315ff91fdd1\",\n        \"payment_code\": \"GC-6929-3605-5424\",\n        \"quantity\": 2,\n        \"total_amount\": \"2000000\",\n        \"status\": \"pending\",\n        \"payment_url\": \"https://app.sandbox.midtrans.com/snap/v4/redirection/3c6b44bb-5611-4101-b035-b616975c6558\",\n        \"token\": \"3c6b44bb-5611-4101-b035-b616975c6558\",\n        \"created_at\": \"2025-03-07T17:10:51.372967Z\",\n        \"updated_at\": \"2025-03-07T17:10:51.372967Z\",\n        \"product\": {\n            \"id\": \"82c8bdc4-961e-4235-8438-0cd9cc4eb7b9\",\n            \"user_id\": \"3beff2c7-765a-4770-90fb-275a35b809f9\",\n            \"name\": \"MacBook Pro 16-inch (M3 Pro)\",\n            \"description\": \"The 16-inch MacBook Pro with the Apple M3 Pro chip delivers outstanding performance for creative professionals and developers. Featuring a stunning Liquid Retina XDR display, up to 22 hours of battery life, and a premium aluminum design, it’s perfect for video editing, programming, and heavy multitasking.\",\n            \"price\": \"1000000\",\n            \"stock\": 8,\n            \"image_url\": \"https://talkspace-pat.s3.amazonaws.com/0519b048-945c-4115-9d81-904f26772a1e.jpeg\",\n            \"created_at\": \"2025-03-07T13:31:00.028674Z\",\n            \"updated_at\": \"2025-03-07T17:10:50.059744Z\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Create Payment 400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"product_id\":\"82c8bdc4-961e-4235-8438-0cd9cc4eb7b9\",\n    \"quantity\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/payments",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"payments"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 10:22:56 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"insufficient stock\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Payments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/payments",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"payments"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Payments 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/payments",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"payments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 10:10:56 GMT"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Payments retrieved successfully\"\n    },\n    \"results\": [\n        {\n            \"id\": \"8b52f9fd-b733-40ab-b761-9e68f058c3e4\",\n            \"product_id\": \"6017d162-54e5-40ad-9b11-203cd9557c14\",\n            \"user_id\": \"4080df7f-ac70-497b-a476-a315ff91fdd1\",\n            \"payment_code\": \"GC-2577-9213-6286\",\n            \"quantity\": 2,\n            \"total_amount\": \"2000\",\n            \"status\": \"pending\",\n            \"payment_url\": \"https://app.sandbox.midtrans.com/snap/v4/redirection/bd346da3-ccbd-40da-9fb4-63b52858d189\",\n            \"token\": \"bd346da3-ccbd-40da-9fb4-63b52858d189\",\n            \"created_at\": \"2025-03-07T17:06:03.70878Z\",\n            \"updated_at\": \"2025-03-07T17:06:03.708781Z\",\n            \"product\": {\n                \"id\": \"6017d162-54e5-40ad-9b11-203cd9557c14\",\n                \"user_id\": \"3beff2c7-765a-4770-90fb-275a35b809f9\",\n                \"name\": \"iPhone 16 Pro\",\n                \"description\": \"The iPhone 16 brings a sleek design, a brighter Super Retina XDR OLED display, and the latest A18 Bionic chip for faster and more efficient performance. With an enhanced 48MP AI-powered camera, you can capture stunning photos and videos, even in low-light conditions.\",\n                \"price\": \"1000\",\n                \"stock\": 8,\n                \"image_url\": \"https://talkspace-pat.s3.amazonaws.com/f171f675-c39f-43b7-8ef8-589e742ba540.jpeg\",\n                \"created_at\": \"2025-03-07T13:35:03.709453Z\",\n                \"updated_at\": \"2025-03-07T17:06:03.436941Z\"\n            }\n        },\n        {\n            \"id\": \"96c7fe77-0b54-438c-9e4d-71d58d56463a\",\n            \"product_id\": \"82c8bdc4-961e-4235-8438-0cd9cc4eb7b9\",\n            \"user_id\": \"4080df7f-ac70-497b-a476-a315ff91fdd1\",\n            \"payment_code\": \"GC-6929-3605-5424\",\n            \"quantity\": 2,\n            \"total_amount\": \"2000000\",\n            \"status\": \"pending\",\n            \"payment_url\": \"https://app.sandbox.midtrans.com/snap/v4/redirection/3c6b44bb-5611-4101-b035-b616975c6558\",\n            \"token\": \"3c6b44bb-5611-4101-b035-b616975c6558\",\n            \"created_at\": \"2025-03-07T17:10:51.372967Z\",\n            \"updated_at\": \"2025-03-07T17:10:51.372967Z\",\n            \"product\": {\n                \"id\": \"82c8bdc4-961e-4235-8438-0cd9cc4eb7b9\",\n                \"user_id\": \"3beff2c7-765a-4770-90fb-275a35b809f9\",\n                \"name\": \"MacBook Pro 16-inch (M3 Pro)\",\n                \"description\": \"The 16-inch MacBook Pro with the Apple M3 Pro chip delivers outstanding performance for creative professionals and developers. Featuring a stunning Liquid Retina XDR display, up to 22 hours of battery life, and a premium aluminum design, it’s perfect for video editing, programming, and heavy multitasking.\",\n                \"price\": \"1000000\",\n                \"stock\": 8,\n                \"image_url\": \"https://talkspace-pat.s3.amazonaws.com/0519b048-945c-4115-9d81-904f26772a1e.jpeg\",\n                \"created_at\": \"2025-03-07T13:31:00.028674Z\",\n                \"updated_at\": \"2025-03-07T17:10:50.059744Z\"\n            }\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get All Payments 401",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/payments",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"payments"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 10:12:20 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"missing authorization token\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Payment by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/payments/:id",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"payments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Payment by ID 404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/payments/:id",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"payments",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "96c7fe77-0b54-438c-9e4d-71d58d56463a"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 10:11:48 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": false,\n        \"message\": \"Payment not found\"\n    }\n}"
+						},
+						{
+							"name": "Get Payment by ID 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/payments/:id",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"payments",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "96c7fe77-0b54-438c-9e4d-71d58d56463a"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Mar 2025 10:15:43 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1234"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"success\": true,\n        \"message\": \"Payment retrieved successfully\"\n    },\n    \"results\": {\n        \"id\": \"96c7fe77-0b54-438c-9e4d-71d58d56463a\",\n        \"product_id\": \"82c8bdc4-961e-4235-8438-0cd9cc4eb7b9\",\n        \"user_id\": \"4080df7f-ac70-497b-a476-a315ff91fdd1\",\n        \"payment_code\": \"GC-6929-3605-5424\",\n        \"quantity\": 2,\n        \"total_amount\": \"2000000\",\n        \"status\": \"pending\",\n        \"payment_url\": \"https://app.sandbox.midtrans.com/snap/v4/redirection/3c6b44bb-5611-4101-b035-b616975c6558\",\n        \"token\": \"3c6b44bb-5611-4101-b035-b616975c6558\",\n        \"created_at\": \"2025-03-07T17:10:51.372967Z\",\n        \"updated_at\": \"2025-03-07T17:10:51.372967Z\",\n        \"product\": {\n            \"id\": \"82c8bdc4-961e-4235-8438-0cd9cc4eb7b9\",\n            \"user_id\": \"3beff2c7-765a-4770-90fb-275a35b809f9\",\n            \"name\": \"MacBook Pro 16-inch (M3 Pro)\",\n            \"description\": \"The 16-inch MacBook Pro with the Apple M3 Pro chip delivers outstanding performance for creative professionals and developers. Featuring a stunning Liquid Retina XDR display, up to 22 hours of battery life, and a premium aluminum design, it’s perfect for video editing, programming, and heavy multitasking.\",\n            \"price\": \"1000000\",\n            \"stock\": 8,\n            \"image_url\": \"https://talkspace-pat.s3.amazonaws.com/0519b048-945c-4115-9d81-904f26772a1e.jpeg\",\n            \"created_at\": \"2025-03-07T13:31:00.028674Z\",\n            \"updated_at\": \"2025-03-07T17:10:50.059744Z\"\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

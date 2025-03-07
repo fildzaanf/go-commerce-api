@@ -2,10 +2,12 @@ package mailer
 
 import (
 	"bytes"
+	"crypto/tls"
 	"fmt"
 	"go-commerce-api/infrastructure/config"
 	"log"
 	"os"
+	"path/filepath"
 	"strconv"
 	"time"
 
@@ -50,16 +52,26 @@ func EmailNotification(to []string, templateContent string, data interface{}) (b
 		config.SMTP.SMTP_USER,
 		config.SMTP.SMTP_PASS,
 	)
+	d.TLSConfig = &tls.Config{InsecureSkipVerify: true}
 
+	log.Printf("sending email to: %v", to)
 	if err := d.DialAndSend(m); err != nil {
 		return false, fmt.Errorf("failed to send email: %v", err)
 	}
+	log.Println("email successfully sent!")
 	return true, nil
 }
 
 func SendEmailNotificationPayment(name, email, paymentCode, productName string, price decimal.Decimal, quantity int, totalAmount decimal.Decimal, status string, updatedAt time.Time) {
 	go func() {
-		filePath := "pkg/email/template/payment-notification.html"
+		rootPath, err := filepath.Abs("../") // Naik satu level ke root project
+		if err != nil {
+			log.Fatalf("failed to get root directory: %v", err)
+		}
+
+		filePath := filepath.Join(rootPath, "pkg/email/template/payment-notification.html")
+		log.Printf("Looking for email template at: %s", filePath)
+		log.Printf("Looking for email template at: %s", filePath)
 		emailTemplate, err := os.ReadFile(filePath)
 		if err != nil {
 			log.Printf("failed to load email template: %v", err)
@@ -78,9 +90,10 @@ func SendEmailNotificationPayment(name, email, paymentCode, productName string, 
 			"UpdatedAt":   updatedAt.Format("2006-01-02 15:04:05"),
 		}
 
+		log.Printf("Preparing email for: %s", email)
 		success, errEmail := EmailNotification([]string{email}, string(emailTemplate), data)
 		if !success || errEmail != nil {
-			log.Printf("failed to send notification email to %s: %v", email, errEmail)
+			log.Printf("Failed to send notification email to %s: %v", email, errEmail)
 		}
 	}()
 }
