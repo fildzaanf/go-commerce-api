@@ -67,7 +67,7 @@ func (uh *userHandler) GetUserByID(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, response.ErrorResponse("user id is required"))
 	}
 
-	tokenUserID, role, errExtract := middleware.ExtractToken(c)
+	userID, role, errExtract := middleware.ExtractToken(c)
 	if errExtract != nil {
 		return c.JSON(http.StatusUnauthorized, response.ErrorResponse("unauthorized access"))
 	}
@@ -76,7 +76,7 @@ func (uh *userHandler) GetUserByID(c echo.Context) error {
 		return c.JSON(http.StatusUnauthorized, response.ErrorResponse(constant.ERROR_ROLE_ACCESS))
 	}
 
-	if userIDParam != tokenUserID {
+	if userIDParam != userID {
 		return c.JSON(http.StatusForbidden, response.ErrorResponse("forbidden access"))
 	}
 

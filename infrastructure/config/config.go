@@ -11,6 +11,8 @@ type Configuration struct {
 	MYSQL        MySQLConfig
 	JWT          JWTConfig
 	SERVER       ServerConfig
+	CLOUDSTORAGE CloudStorageConfig
+	MIDTRANS     MidtransConfig
 }
 
 type (
@@ -29,6 +31,18 @@ type (
 
 	JWTConfig struct {
 		JWT_SECRET string
+	}
+
+	CloudStorageConfig struct {
+		AWS_ACCESS_KEY_ID     string
+		AWS_SECRET_ACCESS_KEY string
+		AWS_REGION            string
+		AWS_BUCKET_NAME       string
+	}
+
+	MidtransConfig struct {
+		MIDTRANS_SERVER_KEY string
+		MIDTRANS_CLIENT_KEY string
 	}
 )
 
@@ -58,6 +72,16 @@ func LoadConfig() (*Configuration, error) {
 		},
 		JWT: JWTConfig{
 			JWT_SECRET: os.Getenv("JWT_SECRET"),
+		},
+		CLOUDSTORAGE: CloudStorageConfig{
+			AWS_ACCESS_KEY_ID:     os.Getenv("AWS_ACCESS_KEY_ID"),
+			AWS_SECRET_ACCESS_KEY: os.Getenv("AWS_SECRET_ACCESS_KEY"),
+			AWS_REGION:            os.Getenv("AWS_REGION"),
+			AWS_BUCKET_NAME:       os.Getenv("AWS_BUCKET_NAME"),
+		},
+		MIDTRANS: MidtransConfig{
+			MIDTRANS_SERVER_KEY: os.Getenv("MIDTRANS_SERVER_KEY"),
+			MIDTRANS_CLIENT_KEY: os.Getenv("MIDTRANS_CLIENT_KEY"),
 		},
 	}, nil
 }
