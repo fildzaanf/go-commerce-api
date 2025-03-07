@@ -7,6 +7,8 @@ import (
 	"regexp"
 	"strings"
 	"time"
+
+	"github.com/shopspring/decimal"
 )
 
 func IsDataEmpty(fields []string, data ...interface{}) error {
@@ -39,6 +41,10 @@ func IsDataEmpty(fields []string, data ...interface{}) error {
 		case []int:
 			if len(v) == 0 {
 				return fmt.Errorf("%s is empty", fields[i])
+			}
+		case decimal.Decimal:
+			if v.IsZero() || v.LessThanOrEqual(decimal.NewFromInt(0)) {
+				return fmt.Errorf("%s is empty or invalid", fields[i])
 			}
 		default:
 			if reflect.TypeOf(v).Kind() == reflect.Slice {

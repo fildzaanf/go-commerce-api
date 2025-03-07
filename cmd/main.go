@@ -45,6 +45,7 @@ func main() {
 	}
 
 	mdb := database.ConnectMySQL()
+	// psql := database.ConnectPostgreSQL()
 
 	e := echo.New()
 
