@@ -9,6 +9,7 @@ import (
 
 type Configuration struct {
 	MYSQL        MySQLConfig
+	POSTGRESQL   PostgreSQLConfig
 	JWT          JWTConfig
 	SERVER       ServerConfig
 	CLOUDSTORAGE CloudStorageConfig
@@ -23,6 +24,14 @@ type (
 		MYSQL_HOST string
 		MYSQL_PORT string
 		MYSQL_NAME string
+	}
+
+	PostgreSQLConfig struct {
+		POSTGRESQL_USER string
+		POSTGRESQL_PASS string
+		POSTGRESQL_HOST string
+		POSTGRESQL_PORT string
+		POSTGRESQL_NAME string
 	}
 
 	ServerConfig struct {
@@ -73,6 +82,13 @@ func LoadConfig() (*Configuration, error) {
 			MYSQL_HOST: os.Getenv("MYSQL_HOST"),
 			MYSQL_PORT: os.Getenv("MYSQL_PORT"),
 			MYSQL_NAME: os.Getenv("MYSQL_NAME"),
+		},
+		POSTGRESQL: PostgreSQLConfig{
+			POSTGRESQL_USER: os.Getenv("POSTGRESQL_USER"),
+			POSTGRESQL_PASS: os.Getenv("POSTGRESQL_PASS"),
+			POSTGRESQL_HOST: os.Getenv("POSTGRESQL_HOST"),
+			POSTGRESQL_PORT: os.Getenv("POSTGRESQL_PORT"),
+			POSTGRESQL_NAME: os.Getenv("POSTGRESQL_NAME"),
 		},
 		SERVER: ServerConfig{
 			SERVER_HOST: os.Getenv("SERVER_HOST"),
