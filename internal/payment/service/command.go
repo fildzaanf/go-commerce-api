@@ -144,7 +144,7 @@ func (pcs *paymentCommandService) UpdatePaymentStatusByID(id, status string) err
 	switch status {
 	case "settlement":
 		payment.Status = "success"
-	case "expire":
+	case "expired":
 		payment.Status = "expire"
 	case "cancel":
 		payment.Status = "cancel"
@@ -154,7 +154,7 @@ func (pcs *paymentCommandService) UpdatePaymentStatusByID(id, status string) err
 		payment.Status = status
 	}
 
-	log.Printf("Received payment status from Midtrans: %s", status)
+	log.Printf("received payment status from Midtrans: %s", status)
 
 	if prevStatus == "pending" && (status == "expire" || status == "cancel" || status == "deny") {
 		product.Stock += payment.Quantity
