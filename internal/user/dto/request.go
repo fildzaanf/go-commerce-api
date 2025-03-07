@@ -17,10 +17,11 @@ type UserLoginRequest struct {
 
 func UserRegisterRequestToDomain(request UserRegisterRequest) domain.User {
 	return domain.User{
-		Name:     request.Name,
-		Email:    request.Email,
-		Role:     request.Role,
-		Password: request.Password,
+		Name:            request.Name,
+		Email:           request.Email,
+		Role:            request.Role,
+		Password:        request.Password,
+		ConfirmPassword: request.ConfirmPassword,
 	}
 }
 
