@@ -7,6 +7,7 @@ import (
 	"go-commerce-api/internal/payment/repository"
 	repositoryProduct "go-commerce-api/internal/product/repository"
 	repositoryUser "go-commerce-api/internal/user/repository"
+	"log"
 
 	"go-commerce-api/pkg/constant"
 	"go-commerce-api/pkg/email/mailer"
@@ -101,7 +102,6 @@ func (pcs *paymentCommandService) CreatePayment(payment domain.Payment, userID s
 		return domain.Payment{}, errSnap
 	}
 
-
 	payment.UserID = userID
 	payment.Status = "pending"
 	payment.PaymentURL = snapResponse.RedirectURL
@@ -145,14 +145,16 @@ func (pcs *paymentCommandService) UpdatePaymentStatusByID(id, status string) err
 	case "settlement":
 		payment.Status = "success"
 	case "expire":
-		payment.Status = "expired"
+		payment.Status = "expire"
 	case "cancel":
-		payment.Status = "cancelled"
+		payment.Status = "cancel"
 	case "deny":
-		payment.Status = "denied"
+		payment.Status = "deny"
 	default:
 		payment.Status = status
 	}
+
+	log.Printf("Received payment status from Midtrans: %s", status)
 
 	if prevStatus == "pending" && (status == "expire" || status == "cancel" || status == "deny") {
 		product.Stock += payment.Quantity
