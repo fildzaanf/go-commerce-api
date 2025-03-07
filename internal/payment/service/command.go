@@ -156,7 +156,7 @@ func (pcs *paymentCommandService) UpdatePaymentStatusByID(id, status string) err
 
 	log.Printf("received payment status from Midtrans: %s", status)
 
-	if prevStatus == "pending" && (status == "expire" || status == "cancel" || status == "deny") {
+	if prevStatus == "pending" && (status == "expired" || status == "cancel" || status == "deny") {
 		product.Stock += payment.Quantity
 		err := pcs.productCommandRepository.UpdateProductStockByID(product.ID, product.Stock)
 		if err != nil {
