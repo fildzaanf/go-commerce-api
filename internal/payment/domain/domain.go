@@ -28,6 +28,7 @@ func PaymentDomainToEntity(paymentDomain Payment) entity.Payment {
 		ID:          paymentDomain.ID,
 		ProductID:   paymentDomain.ProductID,
 		UserID:      paymentDomain.UserID,
+		PaymentCode: paymentDomain.PaymentCode,
 		Quantity:    paymentDomain.Quantity,
 		TotalAmount: paymentDomain.TotalAmount,
 		Status:      paymentDomain.Status,
@@ -35,6 +36,7 @@ func PaymentDomainToEntity(paymentDomain Payment) entity.Payment {
 		Token:       paymentDomain.Token,
 		CreatedAt:   paymentDomain.CreatedAt,
 		UpdatedAt:   paymentDomain.UpdatedAt,
+		Product:     domain.ProductDomainToEntity(paymentDomain.Product),
 	}
 }
 
@@ -43,6 +45,7 @@ func PaymentEntityToDomain(paymentEntity entity.Payment) Payment {
 		ID:          paymentEntity.ID,
 		ProductID:   paymentEntity.ProductID,
 		UserID:      paymentEntity.UserID,
+		PaymentCode: paymentEntity.PaymentCode,
 		Quantity:    paymentEntity.Quantity,
 		TotalAmount: paymentEntity.TotalAmount,
 		Status:      paymentEntity.Status,
@@ -50,6 +53,7 @@ func PaymentEntityToDomain(paymentEntity entity.Payment) Payment {
 		Token:       paymentEntity.Token,
 		CreatedAt:   paymentEntity.CreatedAt,
 		UpdatedAt:   paymentEntity.UpdatedAt,
+		Product:     domain.ProductEntityToDomain(paymentEntity.Product),
 	}
 }
 

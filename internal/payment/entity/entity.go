@@ -16,7 +16,7 @@ type Payment struct {
 	PaymentCode string          `gorm:"type:varchar(36);not null;unique"`
 	Quantity    int             `gorm:"not null"`
 	TotalAmount decimal.Decimal `gorm:"type:decimal(10,2);not null"`
-	Status      string          `gorm:"type:enum('deny', 'success', 'cancel', 'expire', 'pending');default:'pending'"`
+	Status      string          `gorm:"type:payment_status_enum;default:'pending'"`
 	PaymentURL  string          `gorm:"type:text"`
 	Token       string          `gorm:"type:text"`
 	CreatedAt   time.Time

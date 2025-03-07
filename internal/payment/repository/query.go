@@ -19,7 +19,7 @@ func NewPaymentQueryRepository(db *gorm.DB) PaymentQueryRepositoryInterface {
 
 func (pqr *paymentQueryRepository) GetPaymentByID(id string) (domain.Payment, error) {
 	var payment domain.Payment
-	result := pqr.db.Where("id = ?", id).First(&payment)
+	result := pqr.db.Preload("Product").Where("id = ?", id).First(&payment)
 
 	if result.Error != nil {
 		if errors.Is(result.Error, gorm.ErrRecordNotFound) {
@@ -31,9 +31,10 @@ func (pqr *paymentQueryRepository) GetPaymentByID(id string) (domain.Payment, er
 	return payment, nil
 }
 
+
 func (pqr *paymentQueryRepository) GetAllPayments(userID string) ([]domain.Payment, error) {
 	var payments []domain.Payment
-	result := pqr.db.Where("user_id = ?", userID).Find(&payments)
+	result := pqr.db.Preload("Product").Where("user_id = ?", userID).Find(&payments)
 
 	if result.Error != nil {
 		if errors.Is(result.Error, gorm.ErrRecordNotFound) {

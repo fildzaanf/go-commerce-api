@@ -107,9 +107,9 @@ func (ph *paymentHandler) GetPaymentByID(c echo.Context) error {
 		return c.JSON(http.StatusUnauthorized, response.ErrorResponse("unauthorized access"))
 	}
 
-	if role != constant.BUYER || role != constant.SELLER {
+	if role != constant.BUYER && role != constant.SELLER {
 		return c.JSON(http.StatusForbidden, response.ErrorResponse(constant.ERROR_ROLE_ACCESS))
-	}
+	}	
 
 	paymentID := c.Param("id")
 	if paymentID == "" {
@@ -136,9 +136,9 @@ func (ph *paymentHandler) GetAllPayments(c echo.Context) error {
 		return c.JSON(http.StatusUnauthorized, response.ErrorResponse("unauthorized access"))
 	}
 
-	if role != constant.BUYER || role != constant.SELLER {
+	if role != constant.BUYER && role != constant.SELLER {
 		return c.JSON(http.StatusForbidden, response.ErrorResponse(constant.ERROR_ROLE_ACCESS))
-	}
+	}	
 
 	payments, err := ph.paymentQueryService.GetAllPayments(userID)
 	if err != nil {
@@ -146,5 +146,6 @@ func (ph *paymentHandler) GetAllPayments(c echo.Context) error {
 	}
 
 	paymentResponses := dto.ListPaymentDomainToResponse(payments)
+	
 	return c.JSON(http.StatusOK, response.SuccessResponse("Payments retrieved successfully", paymentResponses))
 }

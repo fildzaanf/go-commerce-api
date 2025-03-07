@@ -27,6 +27,11 @@ func (pcr *paymentCommandRepository) CreatePayment(payment domain.Payment) (doma
 		return domain.Payment{}, err
 	}
 
+	if err := tx.Preload("Product").First(&payment, "id = ?", payment.ID).Error; err != nil {
+		tx.Rollback()
+		return domain.Payment{}, err
+	}
+
 	if err := tx.Commit().Error; err != nil {
 		return domain.Payment{}, err
 	}
