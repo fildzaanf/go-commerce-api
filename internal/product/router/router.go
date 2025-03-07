@@ -21,7 +21,7 @@ func ProductRouter(product *echo.Group, db *gorm.DB) {
 	productHandler := handler.NewProductHandler(productCommandService, productQueryService)
 
 	product.POST("", productHandler.CreateProduct, middleware.JWTMiddleware())
-	product.PUT("", productHandler.UpdateProductByID, middleware.JWTMiddleware())
+	product.PUT("/:id", productHandler.UpdateProductByID, middleware.JWTMiddleware())
 	product.DELETE("/:id", productHandler.DeleteProductByID, middleware.JWTMiddleware())
 	product.GET("/:id", productHandler.GetProductByID)
 	product.GET("", productHandler.GetAllProducts)

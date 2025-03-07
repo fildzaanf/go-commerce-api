@@ -107,7 +107,9 @@ func (ph *productHandler) UpdateProductByID(c echo.Context) error {
 		productRequest.ImageURL = imageURL
 	}
 
-	updatedProduct, err := ph.productCommandService.UpdateProductByID(productID, product, image)
+	productDomain := dto.UpdateProductRequestToDomain(productRequest)
+
+	updatedProduct, err := ph.productCommandService.UpdateProductByID(productID, productDomain, image)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, response.ErrorResponse(err.Error()))
 	}

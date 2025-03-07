@@ -2,8 +2,11 @@ package repository
 
 import (
 	"errors"
+	"fmt"
 	"go-commerce-api/internal/product/domain"
+	"time"
 
+	"github.com/shopspring/decimal"
 	"gorm.io/gorm"
 )
 
@@ -47,12 +50,36 @@ func (pcr *productCommandRepository) UpdateProductByID(id string, product domain
 		return domain.Product{}, errors.New("product not found")
 	}
 
-	if err := tx.Model(&existingProduct).Updates(product).Error; err != nil {
-		tx.Rollback()
-		return domain.Product{}, err
+	updateFields := map[string]interface{}{}
+
+	if product.Name != "" {
+		updateFields["name"] = product.Name
+	}
+	if product.Description != "" {
+		updateFields["description"] = product.Description
+	}
+	if product.Price.GreaterThan(decimal.NewFromInt(0)) {
+		updateFields["price"] = product.Price
+	}
+	if product.Stock >= 0 {
+		updateFields["stock"] = product.Stock
+	}
+	if product.ImageURL != "" {
+		updateFields["image_url"] = product.ImageURL
+	}
+
+
+	if len(updateFields) > 0 {
+		updateFields["updated_at"] = time.Now()
+
+		if err := tx.Model(&existingProduct).Select("*").Updates(updateFields).Error; err != nil {
+			tx.Rollback()
+			return domain.Product{}, err
+		}
 	}
 
 	if err := tx.Commit().Error; err != nil {
+		fmt.Println("Commit Error:", err)
 		return domain.Product{}, err
 	}
 
