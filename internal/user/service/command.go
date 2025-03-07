@@ -25,11 +25,17 @@ func NewUserCommandService(ucr repository.UserCommandRepositoryInterface, uqr re
 func (ucs *userCommandService) RegisterUser(user domain.User) (domain.User, error) {
 
 	errEmpty := validator.IsDataEmpty(
-		[]string{"name", "email", "password", "confirm_password"},
-		user.Name, user.Email, user.Password, user.ConfirmPassword,
+		[]string{"name", "email", "role", "password", "confirm_password"},
+		user.Name, user.Email, user.Role, user.Password, user.ConfirmPassword,
 	)
+
 	if errEmpty != nil {
 		return domain.User{}, errEmpty
+	}
+
+	errRole := validator.IsRoleValid(user.Role)
+	if errRole != nil {
+		return domain.User{}, errRole
 	}
 
 	errEmailValid := validator.IsEmailValid(user.Email)

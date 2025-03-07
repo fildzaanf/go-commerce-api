@@ -7,7 +7,7 @@ CREATE TABLE users (
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password TEXT NOT NULL,
-    role ENUM('user') DEFAULT 'user',
+    role ENUM('user','buyer','seller') DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -30,6 +30,7 @@ CREATE TABLE payments (
     id VARCHAR(36) PRIMARY KEY,
     product_id VARCHAR(36) NOT NULL,
     user_id VARCHAR(36) NOT NULL,
+    payment_code VARCHAR(36) NOT NULL,
     quantity INT NOT NULL,
     total_amount DECIMAL(15,2) NOT NULL,
     status ENUM('deny', 'success', 'cancel', 'expire', 'pending') DEFAULT 'pending',

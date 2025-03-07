@@ -4,6 +4,8 @@ import (
 	"log"
 
 	eu "go-commerce-api/internal/user/entity"
+	epy "go-commerce-api/internal/payment/entity"
+	epd "go-commerce-api/internal/product/entity"
 
 	"gorm.io/gorm"
 )
@@ -13,6 +15,8 @@ func Migration(db *gorm.DB) {
 
 	db.AutoMigrate(
 		&eu.User{},
+		&epd.Product{},
+		&epy.Payment{},
 	)
 
 	tables := []string{"users", "products", "payments"}

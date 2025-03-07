@@ -123,3 +123,13 @@ func IsPhoneNumberValid(phone string) error {
 	}
 	return nil
 }
+
+func IsRoleValid(role string) error {
+	validRoles := []string{"buyer", "seller"}
+	for _, validRole := range validRoles {
+		if role == validRole {
+			return nil
+		}
+	}
+	return errors.New("invalid role. allowed roles: buyer, seller")
+}
