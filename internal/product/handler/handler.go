@@ -31,7 +31,7 @@ func (ph *productHandler) CreateProduct(c echo.Context) error {
 		return c.JSON(http.StatusUnauthorized, response.ErrorResponse("unauthorized access"))
 	}
 
-	if role != constant.USER {
+	if role != constant.SELLER {
 		return c.JSON(http.StatusForbidden, response.ErrorResponse(constant.ERROR_ROLE_ACCESS))
 	}
 
@@ -85,7 +85,7 @@ func (ph *productHandler) UpdateProductByID(c echo.Context) error {
 		return c.JSON(http.StatusForbidden, response.ErrorResponse("forbidden access"))
 	}
 
-	if role != constant.USER {
+	if role != constant.SELLER {
 		return c.JSON(http.StatusForbidden, response.ErrorResponse(constant.ERROR_ROLE_ACCESS))
 	}
 
@@ -136,7 +136,7 @@ func (ph *productHandler) DeleteProductByID(c echo.Context) error {
 		return c.JSON(http.StatusForbidden, response.ErrorResponse("forbidden access"))
 	}
 
-	if role != constant.USER {
+	if role != constant.SELLER {
 		return c.JSON(http.StatusForbidden, response.ErrorResponse(constant.ERROR_ROLE_ACCESS))
 	}
 

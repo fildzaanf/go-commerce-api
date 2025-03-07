@@ -1,7 +1,9 @@
 package constant
 
 const (
-	USER = "user"
+	SELLER = "seller"
+	BUYER  = "buyer"
+	USER   = "user"
 )
 
 // Success

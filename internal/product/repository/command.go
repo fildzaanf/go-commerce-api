@@ -76,3 +76,23 @@ func (pcr *productCommandRepository) DeleteProductByID(id string) error {
 
 	return nil
 }
+
+func (pcr *productCommandRepository) UpdateProductStockByID(productID string, newStock int) error {
+	tx := pcr.db.Begin()
+	if tx.Error != nil {
+		return tx.Error
+	}
+
+	if err := tx.Model(&domain.Product{}).
+		Where("id = ?", productID).
+		Update("stock", newStock).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	if err := tx.Commit().Error; err != nil {
+		return err
+	}
+
+	return nil
+}

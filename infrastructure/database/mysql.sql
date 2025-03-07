@@ -29,8 +29,9 @@ CREATE TABLE products (
 CREATE TABLE payments (
     id VARCHAR(36) PRIMARY KEY,
     product_id VARCHAR(36) NOT NULL,
-    quantity INT NOT NULL
-    total_amount INT NOT NULL,
+    user_id VARCHAR(36) NOT NULL,
+    quantity INT NOT NULL,
+    total_amount DECIMAL(15,2) NOT NULL,
     status ENUM('deny', 'success', 'cancel', 'expire', 'pending') DEFAULT 'pending',
     payment_url TEXT,
     token TEXT,

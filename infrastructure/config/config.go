@@ -13,6 +13,7 @@ type Configuration struct {
 	SERVER       ServerConfig
 	CLOUDSTORAGE CloudStorageConfig
 	MIDTRANS     MidtransConfig
+	SMTP         SMTPConfig
 }
 
 type (
@@ -43,6 +44,13 @@ type (
 	MidtransConfig struct {
 		MIDTRANS_SERVER_KEY string
 		MIDTRANS_CLIENT_KEY string
+	}
+
+	SMTPConfig struct {
+		SMTP_USER string
+		SMTP_PASS string
+		SMTP_PORT string
+		SMTP_HOST string
 	}
 )
 
@@ -82,6 +90,12 @@ func LoadConfig() (*Configuration, error) {
 		MIDTRANS: MidtransConfig{
 			MIDTRANS_SERVER_KEY: os.Getenv("MIDTRANS_SERVER_KEY"),
 			MIDTRANS_CLIENT_KEY: os.Getenv("MIDTRANS_CLIENT_KEY"),
+		},
+		SMTP: SMTPConfig{
+			SMTP_USER: os.Getenv("SMTP_USER"),
+			SMTP_PASS: os.Getenv("SMTP_PASS"),
+			SMTP_PORT: os.Getenv("SMTP_PORT"),
+			SMTP_HOST: os.Getenv("SMTP_HOST"),
 		},
 	}, nil
 }
