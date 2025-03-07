@@ -11,7 +11,7 @@ import (
 
 type Product struct {
 	ID          string          `gorm:"type:varchar(36);primaryKey"`
-	UserID      string          `gorm:"type:varchar(36);not null;index"`
+	UserID      string          `gorm:"type:varchar(36);not null"`
 	Name        string          `gorm:"type:varchar(255);not null"`
 	Description string          `gorm:"type:text"`
 	Price       decimal.Decimal `gorm:"type:decimal(15,2);default:0.00;not null"`
@@ -19,8 +19,8 @@ type Product struct {
 	ImageURL    string          `gorm:"type:varchar(255)"`
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
-	DeletedAt   *time.Time `gorm:"index"`
-	User        entity.User       `gorm:"foreignKey:UserID;constraint:OnDelete:CASCADE"`
+	DeletedAt   *time.Time  `gorm:"index"`
+	User        entity.User `gorm:"foreignKey:UserID;constraint:OnDelete:CASCADE"`
 }
 
 func (p *Product) BeforeCreate(tx *gorm.DB) (err error) {

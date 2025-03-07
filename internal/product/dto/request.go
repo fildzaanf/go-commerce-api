@@ -35,20 +35,13 @@ func CreateProductRequestToDomain(request CreateProductRequest, userID string) d
 	}
 }
 
-func UpdateProductRequestToDomain(request UpdateProductRequest, product *domain.Product) {
-	if request.Name != "" {
-		product.Name = request.Name
-	}
-	if request.Description != "" {
-		product.Description = request.Description
-	}
-	if request.Price.GreaterThan(decimal.NewFromInt(0)){
-		product.Price = request.Price
-	}
-	if request.Stock >= 0 {
-		product.Stock = request.Stock
-	}
-	if request.ImageURL != "" {
-		product.ImageURL = request.ImageURL
+func UpdateProductRequestToDomain(request UpdateProductRequest) domain.Product {
+	return domain.Product{
+		Name:        request.Name,
+		Description: request.Description,
+		Price:       request.Price,
+		Stock:       request.Stock,
+		ImageURL:    request.ImageURL,
 	}
 }
+

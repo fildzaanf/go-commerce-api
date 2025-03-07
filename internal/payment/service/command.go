@@ -14,6 +14,7 @@ import (
 	"go-commerce-api/pkg/validator"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/midtrans/midtrans-go"
 	"github.com/midtrans/midtrans-go/snap"
 	"github.com/shopspring/decimal"
@@ -80,6 +81,8 @@ func (pcs *paymentCommandService) CreatePayment(payment domain.Payment, userID s
 	midtransClient := snap.Client{}
 	midtransClient.New(cfg.MIDTRANS.MIDTRANS_SERVER_KEY, midtrans.Sandbox)
 
+	payment.ID = uuid.New().String()
+
 	snapRequest := &snap.Request{
 		TransactionDetails: midtrans.TransactionDetails{
 			OrderID:  payment.ID,
@@ -98,6 +101,7 @@ func (pcs *paymentCommandService) CreatePayment(payment domain.Payment, userID s
 		return domain.Payment{}, errSnap
 	}
 
+
 	payment.UserID = userID
 	payment.Status = "pending"
 	payment.PaymentURL = snapResponse.RedirectURL
@@ -107,7 +111,6 @@ func (pcs *paymentCommandService) CreatePayment(payment domain.Payment, userID s
 
 	paymentEntity, errCreate := pcs.paymentCommandRepository.CreatePayment(payment)
 	if errCreate != nil {
-
 		product.Stock += payment.Quantity
 		_ = pcs.productCommandRepository.UpdateProductStockByID(product.ID, product.Stock)
 		return domain.Payment{}, errCreate
@@ -136,6 +139,8 @@ func (pcs *paymentCommandService) UpdatePaymentStatusByID(id, status string) err
 		return errors.New("failed to retrieve product information")
 	}
 
+	prevStatus := payment.Status
+
 	switch status {
 	case "settlement":
 		payment.Status = "success"
@@ -147,6 +152,14 @@ func (pcs *paymentCommandService) UpdatePaymentStatusByID(id, status string) err
 		payment.Status = "denied"
 	default:
 		payment.Status = status
+	}
+
+	if prevStatus == "pending" && (status == "expire" || status == "cancel" || status == "deny") {
+		product.Stock += payment.Quantity
+		err := pcs.productCommandRepository.UpdateProductStockByID(product.ID, product.Stock)
+		if err != nil {
+			return errors.New("failed to restore product stock")
+		}
 	}
 
 	err = pcs.paymentCommandRepository.UpdatePaymentStatusByID(id, payment.Status)

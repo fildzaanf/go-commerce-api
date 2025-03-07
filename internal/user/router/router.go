@@ -21,5 +21,5 @@ func UserRouter(user *echo.Group, db *gorm.DB) {
 
 	user.POST("/register", userHandler.RegisterUser)
 	user.POST("/login", userHandler.LoginUser)
-	user.GET("/:user_id", userHandler.GetUserByID, middleware.JWTMiddleware())
+	user.GET("/:id", userHandler.GetUserByID, middleware.JWTMiddleware())
 }

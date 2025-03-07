@@ -9,6 +9,7 @@ import (
 	"go-commerce-api/pkg/validator"
 	"mime/multipart"
 
+	"github.com/google/uuid"
 	"github.com/shopspring/decimal"
 )
 
@@ -25,9 +26,6 @@ func NewProductCommandService(pcr repository.ProductCommandRepositoryInterface, 
 }
 
 func (pcs *productCommandService) CreateProduct(product domain.Product, image *multipart.FileHeader) (domain.Product, error) {
-	if err := validator.IsDataEmpty([]string{"name", "description", "image_url", "price", "stock"}, product.Name, product.Description, product.ImageURL, product.Price, product.Stock); err != nil {
-		return domain.Product{}, err
-	}
 
 	if image != nil {
 		imageURL, errUpload := cloud.UploadImageToS3(image)
@@ -35,6 +33,10 @@ func (pcs *productCommandService) CreateProduct(product domain.Product, image *m
 			return domain.Product{}, errUpload
 		}
 		product.ImageURL = imageURL
+	}
+
+	if err := validator.IsDataEmpty([]string{"name", "description", "image_url", "price", "stock"}, product.Name, product.Description, product.ImageURL, product.Price, product.Stock); err != nil {
+		return domain.Product{}, err
 	}
 
 	if product.Price.LessThanOrEqual(decimal.NewFromInt(0)) {
@@ -45,6 +47,10 @@ func (pcs *productCommandService) CreateProduct(product domain.Product, image *m
 		return domain.Product{}, errors.New(constant.ERROR_INVALID_STOCK)
 	}
 
+	if product.ID == "" {
+		product.ID = uuid.New().String()
+	}
+
 	createdProduct, err := pcs.productCommandRepository.CreateProduct(product)
 	if err != nil {
 		return domain.Product{}, err
@@ -52,9 +58,7 @@ func (pcs *productCommandService) CreateProduct(product domain.Product, image *m
 
 	return createdProduct, nil
 }
-
 func (pcs *productCommandService) UpdateProductByID(id string, product domain.Product, image *multipart.FileHeader) (domain.Product, error) {
-
 	existingProduct, err := pcs.productQueryRepository.GetProductByID(id)
 	if err != nil {
 		return domain.Product{}, errors.New(constant.ERROR_PRODUCT_NOT_FOUND)
@@ -81,9 +85,7 @@ func (pcs *productCommandService) UpdateProductByID(id string, product domain.Pr
 		existingProduct.ImageURL = imageURL
 	}
 
-	if err := validator.IsDataEmpty([]string{"name", "description", "image_url", "price", "stock"}, product.Name, product.Description, product.ImageURL, product.Price, product.Stock); err != nil {
-		return domain.Product{}, err
-	}
+	existingProduct.ID = id
 
 	updatedProduct, err := pcs.productCommandRepository.UpdateProductByID(id, existingProduct)
 	if err != nil {
@@ -92,6 +94,7 @@ func (pcs *productCommandService) UpdateProductByID(id string, product domain.Pr
 
 	return updatedProduct, nil
 }
+
 
 func (pcs *productCommandService) DeleteProductByID(id string) error {
 	_, err := pcs.productQueryRepository.GetProductByID(id)

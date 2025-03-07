@@ -72,7 +72,7 @@ func (uh *userHandler) GetUserByID(c echo.Context) error {
 		return c.JSON(http.StatusUnauthorized, response.ErrorResponse("unauthorized access"))
 	}
 
-	if role != constant.USER || role != constant.SELLER || role != constant.BUYER  {
+	if role != constant.USER && role != constant.SELLER && role != constant.BUYER  {
 		return c.JSON(http.StatusUnauthorized, response.ErrorResponse(constant.ERROR_ROLE_ACCESS))
 	}
 	
