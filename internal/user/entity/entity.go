@@ -12,7 +12,7 @@ type User struct {
 	Name      string `gorm:"type:varchar(255);not null"`
 	Email     string `gorm:"type:varchar(255);not null"`
 	Password  string `gorm:"type:text;not null"`
-	Role      string `gorm:"type:user_role_enum;default:'user'"`
+	Role      string `gorm:"type:enum('user','buyer','seller');default:'user'"` // postgresql: `gorm:"type:user_role_enum;default:'user'"` | mysql: `gorm:"type:enum('user','buyer','seller');default:'user'"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
