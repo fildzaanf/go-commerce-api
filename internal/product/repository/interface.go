@@ -6,6 +6,7 @@ type ProductCommandRepositoryInterface interface {
 	CreateProduct(product domain.Product) (domain.Product, error)
 	UpdateProductByID(id string, product domain.Product) (domain.Product, error)
 	DeleteProductByID(id string) error
+	UpdateProductStockByID(productID string, newStock int) error
 }
 
 type ProductQueryRepositoryInterface interface {
