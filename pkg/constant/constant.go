@@ -37,4 +37,9 @@ const (
 	ERROR_TOKEN_GENERATE     = "generate token failed"
 	ERROR_TOKEN_NOTFOUND     = "token not found"
 	ERROR_ROLE_ACCESS        = "not authorized to access this resource"
+	ERROR_INVALID_PRICE      = "product price must be greater than 0"
+	ERROR_INVALID_STOCK      = "product stock cannot be negative"
+	ERROR_PRODUCT_NOT_FOUND  = "product not found"
+	ERROR_UPLOAD_IMAGE       = "failed to upload image"
+	ERROR_UPLOAD_IMAGE_S3    = "failed to upload image to s3"
 )
