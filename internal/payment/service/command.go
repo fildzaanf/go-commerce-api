@@ -6,7 +6,7 @@ import (
 	"go-commerce-api/internal/payment/domain"
 	"go-commerce-api/internal/payment/repository"
 	repositoryProduct "go-commerce-api/internal/product/repository"
-	userRepository "go-commerce-api/internal/user/repository"
+	repositoryUser "go-commerce-api/internal/user/repository"
 
 	"go-commerce-api/pkg/constant"
 	"go-commerce-api/pkg/email/mailer"
@@ -24,10 +24,10 @@ type paymentCommandService struct {
 	paymentQueryRepository   repository.PaymentQueryRepositoryInterface
 	productQueryRepository   repositoryProduct.ProductQueryRepositoryInterface
 	productCommandRepository repositoryProduct.ProductCommandRepositoryInterface
-	userQueryRepository      userRepository.UserQueryRepositoryInterface
+	userQueryRepository      repositoryUser.UserQueryRepositoryInterface
 }
 
-func NewPaymentCommandService(pycr repository.PaymentCommandRepositoryInterface, pyqr repository.PaymentQueryRepositoryInterface, pdqr repositoryProduct.ProductQueryRepositoryInterface, pdcr repositoryProduct.ProductCommandRepositoryInterface, uqr userRepository.UserQueryRepositoryInterface) PaymentCommandServiceInterface {
+func NewPaymentCommandService(pycr repository.PaymentCommandRepositoryInterface, pyqr repository.PaymentQueryRepositoryInterface, pdqr repositoryProduct.ProductQueryRepositoryInterface, pdcr repositoryProduct.ProductCommandRepositoryInterface, uqr repositoryUser.UserQueryRepositoryInterface) PaymentCommandServiceInterface {
 	return &paymentCommandService{
 		paymentCommandRepository: pycr,
 		paymentQueryRepository:   pyqr,

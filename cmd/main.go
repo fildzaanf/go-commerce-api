@@ -6,7 +6,8 @@ import (
 	"go-commerce-api/infrastructure/database"
 	"go-commerce-api/pkg/middleware"
 	ur "go-commerce-api/internal/user/router"
-	pr "go-commerce-api/internal/product/router"
+	pdr "go-commerce-api/internal/product/router"
+	pyr "go-commerce-api/internal/payment/router"
 
 	"net/http"
 	"os"
@@ -26,7 +27,10 @@ func SetupRoutes(e *echo.Echo, db *gorm.DB) {
 	ur.UserRouter(user, db)
 
 	product := e.Group("/products")
-	pr.ProductRouter(product, db)
+	pdr.ProductRouter(product, db)
+
+	payment := e.Group("/payments")
+	pyr.PaymentRouter(payment, db)
 
 }
 
