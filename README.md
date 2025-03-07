@@ -3,7 +3,7 @@
 ## 📌 Overview
 This project is a simple e-commerce system that includes key features such as user management (sellers and buyers), product catalog, and payment system using Midtrans payment gateway.
 
-## 🚀 Technologies Used
+## 🚀 Tools and Technologies 
 - Go Programming Language
 - Echo Framework
 - GORM
