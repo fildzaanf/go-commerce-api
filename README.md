@@ -18,6 +18,12 @@ Go Commerce provides a comprehensive e-commerce platform that centralizes user a
 
 By centralizing these processes, Go Commerce improves operational efficiency, reduces errors, and enhances the overall online shopping experience for both buyers and sellers.
 
+## 📚 Documentation
+* Go Commerce improvement version leveraging gRPC for faster, more efficient service communication
+  * [User Service API with GRPC](https://github.com/fildzaanf/user-service-api)
+  * [Product Service API with GRPC](https://github.com/fildzaanf/product-service-api)
+  * [Payment Service API with GRPC](https://github.com/fildzaanf/payment-service-api)
+    
 ## 🚀 Tools and Technologies 
 * Go Programming Language
 * Echo Go Framework
