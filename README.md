@@ -14,6 +14,61 @@ This project is a simple e-commerce system that includes key features such as us
 - Amazon Simple Storage Service (S3)
 - Simple Mail Transfer Protocol (SMTP)
 
+## ✨ Features
+
+#### User Management
+
+| Feature                   | Description                                                        |
+| ------------------------- | ------------------------------------------------------------------ |
+| User Registration & Login | Allows users to register and log in to access the platform         |
+| Profile                   | Provides functionality to retrieve user profile information by ID  |
+
+#### Product Management
+
+| Feature           | Description                                                                    |
+| ----------------- | ------------------------------------------------------------------------------ |
+| Create Product    | Enables adding new products to the platform                                    |
+| Update Product    | Allows updating existing product details by product ID                         |
+| Delete Product    | Supports removing products from the platform by product ID                     |
+| Retrieve Product  | Provides access to a single product by ID or a list of all available products  |
+
+#### Payment Management
+
+| Feature             | Description                                                             |
+| ------------------- | ----------------------------------------------------------------------- |
+| Create Payment      | Allows users to create new payments for products or services            |
+| Retrieve Payment    | Provides access to all payments or details of a specific payment by ID  |
+| Integration Payment | Supports real-time payment updates via Midtrans Webhook integration     |
+
+## 📡 API Endpoints
+
+#### Users
+
+| Method | Endpoint        | Description                 |
+| ------ | --------------- | --------------------------- |
+| POST   | /users/register | Register a new user         |
+| POST   | /users/login    | Login user                  |
+| GET    | /users/:id      | Retrieve user profile by ID |
+
+#### Products
+
+| Method | Endpoint      | Description                    |
+| ------ | ------------- | ------------------------------ |
+| POST   | /products     | Create a new product           |
+| PUT    | /products/:id | Update product details by ID   |
+| DELETE | /products/:id | Delete product by ID           |
+| GET    | /products/:id | Retrieve product details by ID |
+| GET    | /products     | Retrieve all products          |
+
+#### Payments
+
+| Method | Endpoint                   | Description                                  |
+| ------ | -------------------------- | -------------------------------------------- |
+| POST   | /payments                  | Create a new payment                         |
+| GET    | /payments/:id              | Retrieve payment details by ID               |
+| GET    | /payments                  | Retrieve all payments                        |
+| POST   | /payments/midtrans/webhook | Receive Midtrans webhook for payment updates |
+
 ## 📂 Folder Structure
 ```
 /go-commerce-api
@@ -40,29 +95,5 @@ This project is a simple e-commerce system that includes key features such as us
 ├── README.md           # project documentation
 ```
 
-## 🛠️ Installation & Running the Project
-### 1️⃣ Prerequisites
-Make sure you have installed:
-- [Go](https://go.dev/dl/)
-- [PostgreSQL](https://www.postgresql.org/download/) / [MySQL](https://dev.mysql.com/downloads/)
 
-### 2️⃣ Clone the Repository
-```bash
-git clone <repo-url>
-cd <repo-directory>
-```
 
-### 3️⃣ Configure Environment
-Create a `.env` file based on `.env.example` and place it in the `cmd` directory.
-
-### 4️⃣ Run the Application
-```bash
-cd cmd
-go run main.go
-```
-
-## 🎯 Git Flow & Branching Strategy
-1. `main` → the main branch used only for production releases
-2. `development` → the primary branch for feature development before merging into main
-3. `feature/xyz` → branch for new feature development (replace `xyz` with the feature name)
-4. `bugfix/xyz` → branch for bug fixes (replace `xyz` with the bug name)
