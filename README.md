@@ -1,18 +1,33 @@
 # go-commerce-api
 
-## 📌 Overview
-This project is a simple e-commerce system that includes key features such as user management (sellers and buyers), product catalog, and payment system using Midtrans payment gateway.
+## 📝 Project Overview
+Go Commerce is an e-commerce system that provides user account management (buyer and seller roles), product management, and secure payment processing through the payment gateway
+
+## 🎯 Problem Statement & Solution
+
+#### Problem Statement
+Many users and sellers face challenges managing their online sales and purchases due to difficulties in tracking products, handling orders, and processing payments securely. Manual processes or fragmented systems can lead to errors, delayed transactions, and poor user experience.
+
+#### Solution
+Go Commerce provides a comprehensive e-commerce platform that centralizes user account management, product management, and payment processing. The platform allows users to:
+
+* Create and manage buyer or seller accounts efficiently
+* Add, update, and manage product listings
+* Process payments securely through integrated payment gateways
+* Track orders and transactions seamlessly in one system
+
+By centralizing these processes, Go Commerce improves operational efficiency, reduces errors, and enhances the overall online shopping experience for both buyers and sellers.
 
 ## 🚀 Tools and Technologies 
-- Go Programming Language
-- Echo Framework
-- GORM
-- MySQL / PostgreSQL
-- Docker
-- JWT Authentication
-- Midtrans Payment Gateway
-- Amazon Simple Storage Service (S3)
-- Simple Mail Transfer Protocol (SMTP)
+* Go Programming Language
+* Echo Go Framework
+* GORM for Object Relational Mapping
+* MySQL / PostgreSQL for Relational Database
+* JSON Web Token (JWT) for Authentication
+* Docker for Containerization
+* Midtrans Payment Gateway integrated with Webhooks, SMTP, and GoMail for real-time payment notifications
+* Amazon Web Services (AWS)
+  * Amazon Simple Storage Service (S3)
 
 ## ✨ Features
 
@@ -34,11 +49,13 @@ This project is a simple e-commerce system that includes key features such as us
 
 #### Payment Management
 
-| Feature             | Description                                                             |
-| ------------------- | ----------------------------------------------------------------------- |
-| Create Payment      | Allows users to create new payments for products or services            |
-| Retrieve Payment    | Provides access to all payments or details of a specific payment by ID  |
-| Integration Payment | Supports real-time payment updates via Midtrans Webhook integration     |
+| Feature             | Description                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------ |
+| Create Payment      | Allows users to create new payments for products or services                         |
+| Retrieve Payment    | Provides access to all payments or details of a specific payment by ID               |
+| Integration Payment | Supports real-time payment updates via Midtrans Webhook integration                  |
+| Integration Email   | Integrated Midtrans Payment Gateway using Webhooks with SMTP and Go Mail to automate | 
+|                     | event-driven email notifications based on real-time payment status updates           |
 
 ## 📡 API Endpoints
 
