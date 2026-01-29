@@ -36,6 +36,17 @@ By centralizing these processes, Go Commerce improves operational efficiency, re
   * Amazon Simple Storage Service (S3)
 * GRPC for efficient, low-latency, and strongly-typed API communication
 
+## 🏛️ System Design and Architecture
+
+* Clean Architecture
+* Hexagonal Architecture
+* Domain-Driven Design (DDD)
+* Command Query Responsibility Segregation (CQRS)
+* Microservices Architecture
+* REST API
+* GRPC
+* Webhook
+
 ## ✨ Features
 
 #### User Management
