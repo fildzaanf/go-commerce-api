@@ -34,6 +34,7 @@ By centralizing these processes, Go Commerce improves operational efficiency, re
 * Midtrans Payment Gateway integrated with Webhooks, SMTP, and GoMail for real-time payment notifications
 * Amazon Web Services (AWS)
   * Amazon Simple Storage Service (S3)
+* GRPC for efficient, low-latency, and strongly-typed API communication
 
 ## ✨ Features
 
