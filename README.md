@@ -1,4 +1,4 @@
-# go-commerce-api
+# Go Commerce : E-Commerce Platform
 
 ## 📝 Project Overview
 Go Commerce is an e-commerce system that provides user account management (buyer and seller roles), product management, and secure payment processing through the payment gateway
